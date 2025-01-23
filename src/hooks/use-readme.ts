@@ -41,8 +41,6 @@ export async function fetchAndParseReadme(): Promise<Resource[]> {
         const parts = line.split("|").map((part) => part.trim());
         if (parts.length >= 4) {
           let url = parts[3];
-          console.log("Processing line:", line);
-          console.log("Original URL part:", url);
 
           // Extract URL from markdown link format [Link](url)
           const markdownMatch = url.match(/\[.*?\]\((.*?)\)/);
@@ -52,9 +50,7 @@ export async function fetchAndParseReadme(): Promise<Resource[]> {
             // If not in markdown format, remove any "Link:" prefix
             url = url.replace(/^Link:?\s*/i, "").trim();
           }
-
-          console.log("Final extracted URL:", url);
-
+          
           resources.push({
             id: id++,
             name: parts[1],
